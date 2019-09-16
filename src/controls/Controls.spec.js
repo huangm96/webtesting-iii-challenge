@@ -1,6 +1,7 @@
 // Test away
 import React from "react";
 import { render } from "@testing-library/react";
+import { shallow } from "enzyme";
 
 import Controls from "./Controls";
 
@@ -35,7 +36,15 @@ test("test lock-locked-gate button-text-content", () => {
 
 test("test open-close-gate button disabled", () => {
   const { getByTestId } = render(<Controls locked={true} />);
-  expect(getByTestId("OpenOrClose-Gate-btn").props("disabled")).toBe(true)
+  expect(getByTestId("OpenOrClose-Gate-btn").props('disabled').toBe(true))
   
   
+});
+test("test lock-locked-gate button disabled", () => {
+  const { getByTestId } = render(<Controls closed={false} />);
+  expect(
+    getByTestId("LockedOrUnlocked-Gate-btn")
+      .props("disabled")
+      .toBe(true)
+  );
 });
